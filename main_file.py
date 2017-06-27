@@ -60,6 +60,8 @@ def decision():
             pass
         else:
             PurchaseTracker().displaySec(value_check)
+    elif(selection==5):
+        pass
 
     return selection
 
