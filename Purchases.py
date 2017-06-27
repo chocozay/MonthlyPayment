@@ -1,7 +1,6 @@
 from ErrorHandlingOPP import ErrorChecking
 from ErrorHandlingOPP import calucations
 from os import system
-from P_Track import PurchaseTracker
 
 #Parent class for all purchases
 class purchase(object):
@@ -126,6 +125,8 @@ class car(purchase):
         purchase.tempList = []
         return cls(price, creditScore, years, downPercent)
 
+
+
 class house(purchase):
     houseConsidered =[]
     attribList= ["n Price","n Credit","n Years*","f Downpay Percentage*","f Interest*"]
@@ -163,5 +164,26 @@ class house(purchase):
         purchase.tempList=[]
         return cls(price, creditScore, years, downPercent, interest)
 
+
+
+def display(list):
+    if not any(list):
+        system("say I am sorry but there are not any purchases that have been stored!")
+        return
+    for cell in list:
+        temp = cell.__dict__
+        for index in temp.items():
+            print "{} = {}".format(*index)
+        print
+
+# def displayHouse():
+#     if not any(house.houseConsidered):
+#         system("say I am sorry but there are not any purchases that have been stored!")
+#         return
+#     for cell in house.houseConsidered:
+#         temp = cell.__dict__
+#         for index in temp.items():
+#             print "{} = {}".format(*index)
+#         print
 
 

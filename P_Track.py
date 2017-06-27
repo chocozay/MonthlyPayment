@@ -23,7 +23,7 @@ class PurchaseTracker(object):
             self.get_value(instance_name)
 
 
-    def Search(self, name,instance_name):
+    def Search(self, name):
         flag = True
         for index in self.ChoiceDict.keys():
             if index == name:
@@ -36,8 +36,9 @@ class PurchaseTracker(object):
             return "Could not find a matching name!"
 
         else:
+            instance_name=self.ChoiceDict[name]
             value = self.get_value(instance_name)
-            for index in self.ChoiceDict.values()[0].__dict__.items():
+            for index in instance_name.__dict__.items():
                 if value[0] == index[0]:
                     return "{} = {}".format(index[0],index[1])
 

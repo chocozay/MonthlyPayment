@@ -2,6 +2,7 @@ from ErrorHandlingOPP import ErrorChecking
 from ErrorHandlingOPP import calucations
 from P_Track import PurchaseTracker
 import Purchases
+
 import os
 
 
@@ -13,7 +14,9 @@ def decision():
            "Enter 3 to get list of all purchases considered\n" \
            "Enter 4 to search for particular purchase\n" \
            "Enter 5 to search for particular component of a purchase\n" \
-           "Enter 6 to exit\n" \
+           "Enter 6 to get list of all car purchases considered\n" \
+           "Enter 7 to get list of all house purchases considered\n" \
+           "Enter 8 to exit\n" \
            "Please enter a number: "
 
     # os.system("say Enter 1 to get payment for new car,Enter 2 to get payment for new house,Enter 3 to get list of all items,Enter 4 to search for particular purchase,Enter 5 to search for particular component of a purchase,Enter 6 to exit,Please enter a number: ")
@@ -26,17 +29,19 @@ def decision():
         else:
             os.system("say You have enter " + str(selection))
 
-    if (not(1<=selection<=6) or type(selection)== float):
+    if (not(1<=selection<=9) or type(selection)== float):
         os.system("say Invalid Entry, please try again!")
 
         decision()
+
+    elif(selection==9):
+        print "Okay you would like to exit"
     elif(selection==1):
         newCar = Purchases.car.setCar()
         newCar.MonthlyPayments = calucations().priceValue(newCar.carMonthly(newCar),newCar)()
         # os.system("say You will be paying"+"{:,.2f}".format(newCar.MonthlyPayments)+" dollars every month!")
         print "{:,.2f}".format(newCar.MonthlyPayments)
-        Purchases.purchase.purchasesConsidered.append(newCar)
-        Purchases.car.purchasesConsidered.append(newCar)
+        Purchases.car.carsConsidered.append(newCar)
         text = "Please enter name of car: "
         PurchaseTracker().add(ErrorChecking().CheckChar(text),newCar)
     elif(selection==2):
@@ -44,8 +49,7 @@ def decision():
         newHouse.MonthlyPayments = calucations().priceValue(newHouse.houseMonthly(newHouse),newHouse)()
         # os.system("say You will be paying"+"{:,.2f}".format(newHouse.MonthlyPayments)+" dollars every month!")
         print "{:,.2f}".format(newHouse.MonthlyPayments)
-        Purchases.purchase.purchasesConsidered.append(newHouse)
-        Purchases.house.purchasesConsidered.append(newHouse)
+        Purchases.house.houseConsidered.append(newHouse)
         text = "Please enter name of House: "
         PurchaseTracker().add(ErrorChecking().CheckChar(text),newHouse)
     elif(selection==3):
@@ -61,8 +65,15 @@ def decision():
         else:
             PurchaseTracker().displaySec(value_check)
     elif(selection==5):
-        print "Five was entered"
-
+        text="Please enter name of car or house: "
+        name= ErrorChecking().CheckChar(text)
+        print PurchaseTracker().Search(name)
+    elif(selection==6):
+        Purchases.display(Purchases.car.carsConsidered)
+    elif(selection==7):
+        Purchases.display(Purchases.house.houseConsidered)
+    else:
+        pass
     return selection
 
 
@@ -73,17 +84,20 @@ flag = True
 carA=Purchases.car(21000,800)
 houseA=Purchases.house(100000,800)
 carA.carMonthly= calucations().priceValue(carA.carMonthly(carA),carA)()
+Purchases.car.carsConsidered.append(carA)
+print Purchases.car.purchasesConsidered
 houseA.houseMonthly= calucations().priceValue(houseA.houseMonthly(houseA),houseA)()
+Purchases.house.houseConsidered.append(houseA)
 text = "bob"
 PurchaseTracker().add(text,houseA)
 text = "rob"
 PurchaseTracker().add(text,carA)
-PurchaseTracker().displayAll()
+print Purchases.car.purchasesConsidered
 
 while(flag):
 
     value =decision()
-    if not(value==6):
+    if not(value==8):
         if(ErrorChecking().yesNo(text="Would you like to check something else, yes or no: ") == "no"):
             flag = False
     else:
