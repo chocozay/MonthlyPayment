@@ -19,7 +19,7 @@ def decision():
            "Enter 8 to exit\n" \
            "Please enter a number: "
 
-    # os.system("say Enter 1 to get payment for new car,Enter 2 to get payment for new house,Enter 3 to get list of all items,Enter 4 to search for particular purchase,Enter 5 to search for particular component of a purchase,Enter 6 to exit,Please enter a number: ")
+    os.system("say Enter 1 to get payment for new car,Enter 2 to get payment for new house,Enter 3 to get list of all items,Enter 4 to search for particular purchase,Enter 5 to search for particular component of a purchase,Enter 6 to exit,Please enter a number: ")
 
     selection = ErrorChecking().checkValue(text,element="")
     print
@@ -34,12 +34,12 @@ def decision():
 
         decision()
 
-    elif(selection==9):
+    elif(selection==8):
         print "Okay you would like to exit"
     elif(selection==1):
         newCar = Purchases.car.setCar()
         newCar.MonthlyPayments = calucations().priceValue(newCar.carMonthly(newCar),newCar)()
-        # os.system("say You will be paying"+"{:,.2f}".format(newCar.MonthlyPayments)+" dollars every month!")
+        os.system("say You will be paying"+"{:,.2f}".format(newCar.MonthlyPayments)+" dollars every month!")
         print "{:,.2f}".format(newCar.MonthlyPayments)
         Purchases.car.carsConsidered.append(newCar)
         text = "Please enter name of car: "
@@ -47,7 +47,7 @@ def decision():
     elif(selection==2):
         newHouse = Purchases.house.setHouse()
         newHouse.MonthlyPayments = calucations().priceValue(newHouse.houseMonthly(newHouse),newHouse)()
-        # os.system("say You will be paying"+"{:,.2f}".format(newHouse.MonthlyPayments)+" dollars every month!")
+        os.system("say You will be paying"+"{:,.2f}".format(newHouse.MonthlyPayments)+" dollars every month!")
         print "{:,.2f}".format(newHouse.MonthlyPayments)
         Purchases.house.houseConsidered.append(newHouse)
         text = "Please enter name of House: "
@@ -80,19 +80,7 @@ def decision():
 
 
 flag = True
-# os.system("say Welcome to the monthy payment calculator!")
-carA=Purchases.car(21000,800)
-houseA=Purchases.house(100000,800)
-carA.carMonthly= calucations().priceValue(carA.carMonthly(carA),carA)()
-Purchases.car.carsConsidered.append(carA)
-print Purchases.car.purchasesConsidered
-houseA.houseMonthly= calucations().priceValue(houseA.houseMonthly(houseA),houseA)()
-Purchases.house.houseConsidered.append(houseA)
-text = "bob"
-PurchaseTracker().add(text,houseA)
-text = "rob"
-PurchaseTracker().add(text,carA)
-print Purchases.car.purchasesConsidered
+os.system("say Welcome to the monthy payment calculator!")
 
 while(flag):
 

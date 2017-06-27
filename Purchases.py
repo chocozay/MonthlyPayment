@@ -176,14 +176,5 @@ def display(list):
             print "{} = {}".format(*index)
         print
 
-# def displayHouse():
-#     if not any(house.houseConsidered):
-#         system("say I am sorry but there are not any purchases that have been stored!")
-#         return
-#     for cell in house.houseConsidered:
-#         temp = cell.__dict__
-#         for index in temp.items():
-#             print "{} = {}".format(*index)
-#         print
 
 

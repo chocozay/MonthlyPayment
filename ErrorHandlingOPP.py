@@ -87,5 +87,5 @@ class calucations(object):
             item="house"
         else:
             item =" "
-        # system("say Calculating the expense for " +item)
+        system("say Calculating the expense for " +item)
         return self.calculate(func, class_value)

@@ -5,7 +5,6 @@ class PurchaseTracker(object):
 
     ChoiceDict = {}
 
-    # def get_comp(self,):
     def add(self,name,purchase_object):
         self.ChoiceDict.update({name: purchase_object})
         print "done"
