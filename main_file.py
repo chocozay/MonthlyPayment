@@ -61,7 +61,7 @@ def decision():
         else:
             PurchaseTracker().displaySec(value_check)
     elif(selection==5):
-        pass
+        print "Five was entered"
 
     return selection
 
